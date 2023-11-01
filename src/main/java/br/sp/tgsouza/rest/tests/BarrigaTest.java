@@ -164,6 +164,21 @@ public void naoDeveRemoverContaComMovimentacao() {
 		
 		;
 }
+@Test
+public void deveCalcularSaldoContas() {
+
+	given()
+	
+	.header("Authorization", "JWT " + TOKEN)
+			
+		.when()
+			.get("/saldo")
+		.then()
+		.statusCode(200)
+		.body("find{it.conta_id ==1954271}.saldo", is("400.00"))
+		
+		;
+}
 
 private Movimentacao getMovimentacaoValida() {
 	Movimentacao mov = new Movimentacao();
