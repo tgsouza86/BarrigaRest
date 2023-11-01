@@ -149,6 +149,21 @@ public void naoDeveInserirMovimentacaoComDataFutura() {
 		.body("msg", hasItem("Data da Movimentação deve ser menor ou igual à data atual"))
 		;
 }
+@Test
+public void naoDeveRemoverContaComMovimentacao() {
+
+	given()
+	
+	.header("Authorization", "JWT " + TOKEN)
+			
+		.when()
+			.delete("/contas/1954271")
+		.then()
+		.statusCode(500)
+		.body("constraint", is("transacoes_conta_id_foreign"))
+		
+		;
+}
 
 private Movimentacao getMovimentacaoValida() {
 	Movimentacao mov = new Movimentacao();
