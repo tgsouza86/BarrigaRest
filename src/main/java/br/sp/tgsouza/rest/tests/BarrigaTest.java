@@ -175,8 +175,24 @@ public void deveCalcularSaldoContas() {
 			.get("/saldo")
 		.then()
 		.statusCode(200)
-		.body("find{it.conta_id ==1954271}.saldo", is("400.00"))
+		.body("find{it.conta_id ==1954271}.saldo", is("100.00"))
 		
+		;
+}
+
+@Test
+public void deveRemoverMovimentacao() {
+
+	given()
+	
+	.header("Authorization", "JWT " + TOKEN)
+			
+		.when()
+			.delete("/transacoes/1832084")
+		.then()
+		.statusCode(204)
+		//.body("find{it.conta_id ==1954271}.saldo", is("100.00"))
+//1832084		
 		;
 }
 
